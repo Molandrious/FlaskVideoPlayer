@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video Player</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body>
+    <div id="sidebar">
+      <h1>Video Files</h1>
+      <ul>
+        {% for filename in video_files %}
+          <li class="{% if filename == current_video %}current{% endif %}">
+            <button  onclick="location.href='?video={{ filename }}'" type="button">{{ filename }}</button>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div id="video-container">
+      <video controls>
+        <source src="{{ url_for('videos', filename=current_video) }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </body>
+</html>
